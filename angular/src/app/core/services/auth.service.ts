@@ -14,6 +14,10 @@ interface LoginResult {
   accessToken: string;
   refreshToken: string;
 }
+interface RoleHastane {
+  hastanename: string[];
+
+}
 interface ProtokolResult {
   BARkODKODU: string;
   ADI: string;
@@ -88,7 +92,7 @@ export class AuthService implements OnDestroy {
   
   HastaneRole(username:string) {
     return this.http
-      .post<LoginResult>(`${this.apiUrl}/HastaneRole`, {username})
+      .post<RoleHastane>(`${this.apiUrl}/HastaneRole`, {username})
       .pipe(
         map((x) => {
           // this._protokol.next({

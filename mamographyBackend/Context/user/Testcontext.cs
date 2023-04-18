@@ -17,7 +17,7 @@ namespace mamographyBackend.Context.user
         {
         }
 
-        public virtual DbSet<RPAC_UserRole> RPAC_UserRoles { get; set; }
+        public virtual DbSet<USR_UserHospitalPermission> USR_UserHospitalPermissions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +31,12 @@ namespace mamographyBackend.Context.user
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<USR_UserHospitalPermission>(entity =>
+            {
+                entity.HasIndex(e => new { e.UserId, e.RecordState }, "IX_USR_UserHospitalPermission_UserId_RecordState")
+                    .HasFillFactor((byte)70);
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

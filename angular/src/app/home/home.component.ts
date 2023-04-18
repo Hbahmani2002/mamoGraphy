@@ -1,4 +1,4 @@
-import {ViewChild, TemplateRef , Component, OnInit } from '@angular/core';
+import {ViewChild, TemplateRef ,Renderer2,ElementRef, Component, OnInit } from '@angular/core';
 import { AuthService } from '../core';
 import { ColDef, RowHighlightPosition } from 'ag-grid-community';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   showSpinner=false;
  
   constructor(
+    private renderer:Renderer2,
+    private el:ElementRef,
     private spinnerService: SpinnerService,
     public sanitizer:DomSanitizer,
     private route: ActivatedRoute,
@@ -54,7 +56,16 @@ export class HomeComponent implements OnInit {
     .HastaneRole(this.username).subscribe((resp) => {
              
       
-         this.hospitalname=resp.role;
+         for(var i=0;i<resp.hastanename.length;i++)
+         {
+          const button = this.renderer.createElement('button');
+    const buttonText = this.renderer.createText(resp.hastanename[i]);
+    this.renderer.addClass(this.el.nativeElement, 'red');
+    this.renderer.appendChild(button, buttonText);
+    this.renderer.appendChild(this.el.nativeElement, button);
+    //
+    this.renderer.listen(button, 'click', () => {alert('hi');});
+         };
           this.spinnerService.hideSpinner();
    
        

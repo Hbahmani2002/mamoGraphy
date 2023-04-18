@@ -206,19 +206,15 @@ namespace mamographyBackend.Controllers
         {
             var dc = new ApplicationDbContext();
             var list = (from Ul in dc.RPAC_UserLogins
-                        join UR in dc.RPAC_UserHospitalPeople on Ul.Id equals UR.UserLoginId
+                        join UR in dc.USR_UserHospitalPermissions on Ul.Id equals UR.UserId
                         
-                        where Ul.UserName == username.username   select new { Ul.Id,Ul.UserName, UR.HospitalId }).ToList();
+                        where Ul.UserName == username.username   select new { Ul.Id,Ul.UserName, UR.HospitalId }).ToList().Take(3);
             var role = (from s in list
                         join UU in dc.RPAC_Hospitals on s.HospitalId equals UU.Id
-                        select UU.CompanyName).FirstOrDefault();
-            return Ok(new LoginResult
+                        select UU.CompanyName).ToList();
+            return Ok(new roleHastane
             {
-                UserName = "",
-                Role = role,
-                OriginalUserName = "",
-                AccessToken = "",
-                RefreshToken = ""
+                hastanename=role
             });
         }
     }

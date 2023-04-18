@@ -22,6 +22,8 @@ namespace mamographyBackend.Context.user
         public virtual DbSet<RPAC_UserHospitalPerson> RPAC_UserHospitalPeople { get; set; }
         public virtual DbSet<RPAC_Hospital> RPAC_Hospitals { get; set; }
         public virtual DbSet<RPAC_UserRole> RPAC_UserRoles { get; set; }
+        public virtual DbSet<USR_UserHospitalPermission> USR_UserHospitalPermissions { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -60,6 +62,11 @@ namespace mamographyBackend.Context.user
                 entity.Property(e => e.NAPPacsAETitle).IsFixedLength(true);
 
                 entity.Property(e => e.WadoUrl).IsFixedLength(true);
+            });
+            modelBuilder.Entity<USR_UserHospitalPermission>(entity =>
+            {
+                entity.HasIndex(e => new { e.UserId, e.RecordState }, "IX_USR_UserHospitalPermission_UserId_RecordState")
+                    .HasFillFactor((byte)70);
             });
             OnModelCreatingPartial(modelBuilder);
         }
