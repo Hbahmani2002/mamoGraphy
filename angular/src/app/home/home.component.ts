@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
  
   accessToken = '';
   refreshToken = '';
-  
+  username:any ='';
+  hospitalname=''
   showSpinner=false;
  
   constructor(
@@ -32,16 +33,34 @@ export class HomeComponent implements OnInit {
         });
         console.log(this.showSpinner);
       });
-  
+      this.username = localStorage.getItem("username");
     }
     
   ngOnInit(): void {
     this.accessToken = localStorage.getItem('access_token') ?? '';
     this.refreshToken = localStorage.getItem('refresh_token') ?? '';
+    this.HastaneRole();
    
   }
   
+ ac(){
+
+ }
+ HastaneRole(){
+  this.spinnerService.showSpinner();
  
+  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+  this.authService
+    .HastaneRole(this.username).subscribe((resp) => {
+             
+      
+         this.hospitalname=resp.role;
+          this.spinnerService.hideSpinner();
+   
+       
+     
+    });
+}
 pad(num:number, size:number): string {
   let s = num+"";
   while (s.length < size) s = "0" + s;

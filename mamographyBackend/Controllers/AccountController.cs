@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using mamographyBackend.Models;
 
 namespace mamographyBackend.Controllers
 {
@@ -197,6 +198,27 @@ namespace mamographyBackend.Controllers
                 OriginalUserName = null,
                 AccessToken = jwtResult.AccessToken,
                 RefreshToken = jwtResult.RefreshToken.TokenString
+            });
+        }
+
+        [HttpPost("HastaneRole")]
+        public  ActionResult HastaneRole([FromBody] Sorgula username)
+        {
+            var dc = new ApplicationDbContext();
+            var list = (from Ul in dc.RPAC_UserLogins
+                        join UR in dc.RPAC_UserHospitalPeople on Ul.Id equals UR.UserLoginId
+                        
+                        where Ul.UserName == username.username   select new { Ul.Id,Ul.UserName, UR.HospitalId }).ToList();
+            var role = (from s in list
+                        join UU in dc.RPAC_Hospitals on s.HospitalId equals UU.Id
+                        select UU.CompanyName).FirstOrDefault();
+            return Ok(new LoginResult
+            {
+                UserName = "",
+                Role = role,
+                OriginalUserName = "",
+                AccessToken = "",
+                RefreshToken = ""
             });
         }
     }

@@ -24,25 +24,7 @@ interface ProtokolResult {
   TARIH: Date;
 
 }
-interface CevapXML
-   {
 
-       PROTOKOL:number;
-         PTURU :string;
-         sonucKodu :string;
-         sonucMesaji:string;
-         SYSTakipNo:string;
-         xmlcevap:string; 
-         xmlgiden :string;
-   }
-    interface Hasta {
-  
-    adi:string;
-    soyadi:string;
-     tckimlikno:string;
-  
-  
-  }
 @Injectable({
   providedIn: 'root',
 })
@@ -54,8 +36,7 @@ export class AuthService implements OnDestroy {
   private timer: Subscription | null = null;
   private _user = new BehaviorSubject<ApplicationUser | null>(null);
   private _protokol = new BehaviorSubject<ApplicationProtokol | null>(null);
-  private _cevapxml = new BehaviorSubject<CevapXML | null>(null);
-  private _hasta = new BehaviorSubject<Hasta | null>(null);
+  
   user$ = this._user.asObservable();
 
   private storageEventListener(event: StorageEvent) {
@@ -101,9 +82,13 @@ export class AuthService implements OnDestroy {
         })
       );
   }
-  sorgula(bastar: string, bittar: string) {
+  
+  
+  
+  
+  HastaneRole(username:string) {
     return this.http
-      .post<[]>(`${this.apiUrl1}/Sorgula`, { bastar, bittar })
+      .post<LoginResult>(`${this.apiUrl}/HastaneRole`, {username})
       .pipe(
         map((x) => {
           // this._protokol.next({
@@ -120,183 +105,8 @@ export class AuthService implements OnDestroy {
         })
       );
   }
-  sorgulaIlac() {
-    return this.http
-      .post<[]>(`${this.apiUrl2}/IlacSorgula`,{})
-      .pipe(
-        map((x) => {
-          // this._protokol.next({
-          //   BARkODKODU: x.BARkODKODU,
-          //   ADI: x.ADI,
-          //   SOYADI: x.SOYADI,
-          //   PROTOKOL: x.PROTOKOL,
-          //   KLINIK: x.KLINIK,
-          //   DOKTOR: x.DOKTOR,
-          //   TARIH: x.TARIH,
-            
-          // });
-          return x;
-        })
-      );
-  }
-  sorgulaNot(barkodkodu: string) {
-    return this.http
-      .post<[]>(`${this.apiUrl2}/Notlar`, { barkodkodu })
-      .pipe(
-        map((x) => {
-          // this._protokol.next({
-          //   BARkODKODU: x.BARkODKODU,
-          //   ADI: x.ADI,
-          //   SOYADI: x.SOYADI,
-          //   PROTOKOL: x.PROTOKOL,
-          //   KLINIK: x.KLINIK,
-          //   DOKTOR: x.DOKTOR,
-          //   TARIH: x.TARIH,
-            
-          // });
-          return x;
-        })
-      );
-  }
-  sorgulaScore(barkodkodu: string) {
-    return this.http
-      .post<[]>(`${this.apiUrl2}/Skorlama`, { barkodkodu })
-      .pipe(
-        map((x) => {
-          // this._protokol.next({
-          //   BARkODKODU: x.BARkODKODU,
-          //   ADI: x.ADI,
-          //   SOYADI: x.SOYADI,
-          //   PROTOKOL: x.PROTOKOL,
-          //   KLINIK: x.KLINIK,
-          //   DOKTOR: x.DOKTOR,
-          //   TARIH: x.TARIH,
-            
-          // });
-          return x;
-        })
-      );
-  }
-  sorgulaHasta(barkodkodu:string) {
-    return this.http
-      .post<[]>(`${this.apiUrl2}/HastaSorgula`, {barkodkodu})
-      .pipe(
-        map((x) => {
-          // this._protokol.next({
-          //   BARkODKODU: x.BARkODKODU,
-          //   ADI: x.ADI,
-          //   SOYADI: x.SOYADI,
-          //   PROTOKOL: x.PROTOKOL,
-          //   KLINIK: x.KLINIK,
-          //   DOKTOR: x.DOKTOR,
-          //   TARIH: x.TARIH,
-            
-          // });
-          return x;
-        })
-      );
-  }
-  sorgulaBasvuru(barkodkodu:string) {
-    return this.http
-      .post<[]>(`${this.apiUrl2}/YogunBakimSorgula`, {barkodkodu})
-      .pipe(
-        map((x) => {
-          // this._protokol.next({
-          //   BARkODKODU: x.BARkODKODU,
-          //   ADI: x.ADI,
-          //   SOYADI: x.SOYADI,
-          //   PROTOKOL: x.PROTOKOL,
-          //   KLINIK: x.KLINIK,
-          //   DOKTOR: x.DOKTOR,
-          //   TARIH: x.TARIH,
-            
-          // });
-          return x;
-        })
-      );
-  }
-  gonder(a:any) {
-    
-    return this.http
-      .post<CevapXML>(`${this.apiUrl1}/Gonder`, a )
-      .pipe(
-        map((x) => {
-          this._cevapxml.next({
-            PROTOKOL: x.PROTOKOL,
-            PTURU: x.PTURU,
-            sonucKodu: x.sonucKodu,
-            sonucMesaji: x.sonucMesaji,
-            SYSTakipNo: x.SYSTakipNo,
-            xmlcevap: x.xmlcevap,
-            xmlgiden: x.xmlgiden,
-            
-          });
-          return x;
-        })
-      );
-  }
-  gonder1(a:any) {
-    
-    return this.http
-      .post<Hasta>(`${this.apiUrl2}/Gonder`, a )
-      .pipe(
-        map((x) => {
-          this._hasta.next({
-            adi: x.adi,
-            soyadi: x.soyadi,
-            tckimlikno: x.tckimlikno,
-         
-            
-          });
-         
-          return x;
-        })
-      );
-  }
-  tetkiksonucsorgula(barkodkodu:string) {
-    
-    return this.http
-      .post<[]>(`${this.apiUrl2}/TetkikSonuc`, {barkodkodu} )
-      .pipe(
-        map((x) => {
-          
-          return x;
-        })
-      );
-  }
-  radyolojisonucsorgula(barkodkodu:string) {
-    
-    return this.http
-      .post<[]>(`${this.apiUrl2}/RadyolojiSonuc`, {barkodkodu} )
-      .pipe(
-        map((x) => {
-          
-          return x;
-        })
-      );
-  }
-  patolojisonucsorgula(barkodkodu:string) {
-    
-    return this.http
-      .post<[]>(`${this.apiUrl2}/PatolojiSonuc`, {barkodkodu} )
-      .pipe(
-        map((x) => {
-          
-          return x;
-        })
-      );
-  }
-  konsultasyonsorgula(barkodkodu:string) {
-    
-    return this.http
-      .post<[]>(`${this.apiUrl2}/Konsultasyon`, {barkodkodu} )
-      .pipe(
-        map((x) => {
-          
-          return x;
-        })
-      );
-  }
+ 
+
   // getDoctorBranchEnumService(bastar: Date, bittar: Date){
   //   let model: any[] = [];
   //   return this.http
@@ -358,11 +168,13 @@ export class AuthService implements OnDestroy {
   setLocalStorage(x: LoginResult) {
     localStorage.setItem('access_token', x.accessToken);
     localStorage.setItem('refresh_token', x.refreshToken);
+    localStorage.setItem('username', x.username);
     localStorage.setItem('login-event', 'login' + Math.random());
   }
   clearLocalStorage() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('username');
     localStorage.setItem('logout-event', 'logout' + Math.random());
   }
 
