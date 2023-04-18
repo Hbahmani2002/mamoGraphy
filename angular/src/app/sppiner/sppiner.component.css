@@ -1,0 +1,29 @@
+.spinner-icon {
+    position: fixed;
+    z-index: 10;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.spinner-icon  .spinner-border {
+    align-items: center;
+    justify-content: center;
+    border: 16px solid #fff; /* Light grey */
+    border-top: 16px solid #1976d2; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite;
+        -ms-animation: spin 2s linear infinite;
+           animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
