@@ -1,4 +1,9 @@
 <!-- <button type="button" (click)="ac()" class="btn btn-success">{{hospitalname}}</button> -->
+<li *ngFor="let link of hastanename; let i = index">
+  <div>
+  <button type="button" (click)="ac()" class="btn btn-success">{{ link }}</button>
+</div>
+</li>
 <ng-template #login>
   <div class="card mt-4 shadow">
     <h4 class="card-header">You have been logged out</h4>

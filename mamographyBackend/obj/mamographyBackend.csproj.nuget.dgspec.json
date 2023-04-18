@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\mamography\\mamographyBackend\\mamographyBackend.csproj": {}
+    "C:\\Mamography\\mamographyBackend\\mamographyBackend.csproj": {}
   },
   "projects": {
-    "C:\\mamography\\mamographyBackend\\mamographyBackend.csproj": {
+    "C:\\Mamography\\mamographyBackend\\mamographyBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\mamography\\mamographyBackend\\mamographyBackend.csproj",
+        "projectUniqueName": "C:\\Mamography\\mamographyBackend\\mamographyBackend.csproj",
         "projectName": "mamographyBackend",
-        "projectPath": "C:\\mamography\\mamographyBackend\\mamographyBackend.csproj",
+        "projectPath": "C:\\Mamography\\mamographyBackend\\mamographyBackend.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\mamography\\mamographyBackend\\obj\\",
+        "outputPath": "C:\\Mamography\\mamographyBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

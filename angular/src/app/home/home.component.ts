@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
  
   accessToken = '';
   refreshToken = '';
+  hastanename:string[]=[];
   username:any ='';
   hospitalname=''
   showSpinner=false;
@@ -56,16 +57,7 @@ export class HomeComponent implements OnInit {
     .HastaneRole(this.username).subscribe((resp) => {
              
       
-         for(var i=0;i<resp.hastanename.length;i++)
-         {
-          const button = this.renderer.createElement('button');
-    const buttonText = this.renderer.createText(resp.hastanename[i]);
-    this.renderer.addClass(this.el.nativeElement, 'red');
-    this.renderer.appendChild(button, buttonText);
-    this.renderer.appendChild(this.el.nativeElement, button);
-    //
-    this.renderer.listen(button, 'click', () => {alert('hi');});
-         };
+       this.hastanename=resp.hastanename;
           this.spinnerService.hideSpinner();
    
        
