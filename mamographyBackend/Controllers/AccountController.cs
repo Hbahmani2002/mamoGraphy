@@ -45,9 +45,11 @@ namespace mamographyBackend.Controllers
             //var y = StringCipher.Encrypt(x, "protek");
             var dc = new ApplicationDbContext();
             var sorgu =  (from sss in dc.RPAC_UserLogins where sss.UserName == request.UserName && sss.Password ==request.Password   select sss.Id).Count();
+           
             if (sorgu>0)
             {
-                var role = _userService.GetUserRole(request.UserName);
+                var role = (from Ul in dc.RPAC_UserLogins join UR in dc.RPAC_UserRoles on Ul.UserRoleId equals UR.Id where Ul.UserName == request.UserName && Ul.Password == request.Password select UR.Name).FirstOrDefault();
+               // var role = _userService.GetUserRole(request.UserName);
                 var claims = new[]
                 {
                 new Claim(ClaimTypes.Name,request.UserName),
@@ -135,8 +137,9 @@ namespace mamographyBackend.Controllers
         {
             var userName = User.Identity?.Name;
             _logger.LogInformation($"User [{userName}] is trying to impersonate [{request.UserName}].");
-
-            var impersonatedRole = _userService.GetUserRole(request.UserName);
+            var dc = new ApplicationDbContext();
+            var impersonatedRole = (from Ul in dc.RPAC_UserLogins join UR in dc.RPAC_UserRoles on Ul.UserRoleId equals UR.Id where Ul.UserName == request.UserName select UR.Name).FirstOrDefault();
+            //var impersonatedRole = _userService.GetUserRole(request.UserName);
             if (string.IsNullOrWhiteSpace(impersonatedRole))
             {
                 _logger.LogInformation($"User [{userName}] failed to impersonate [{request.UserName}] due to the target user not found.");
@@ -177,8 +180,8 @@ namespace mamographyBackend.Controllers
                 return BadRequest("You are not impersonating anyone.");
             }
             _logger.LogInformation($"User [{originalUserName}] is trying to stop impersonate [{userName}].");
-
-            var role = _userService.GetUserRole(originalUserName);
+            var dc = new ApplicationDbContext();
+            var role = (from Ul in dc.RPAC_UserLogins join UR in dc.RPAC_UserRoles on Ul.UserRoleId equals UR.Id where Ul.UserName == originalUserName select UR.Name).FirstOrDefault();
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name,originalUserName),

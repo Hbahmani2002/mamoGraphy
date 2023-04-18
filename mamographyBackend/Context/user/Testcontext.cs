@@ -17,7 +17,7 @@ namespace mamographyBackend.Context.user
         {
         }
 
-        public virtual DbSet<RPAC_UserLogin> RPAC_UserLogins { get; set; }
+        public virtual DbSet<RPAC_UserRole> RPAC_UserRoles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,13 +31,6 @@ namespace mamographyBackend.Context.user
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<RPAC_UserLogin>(entity =>
-            {
-                entity.HasIndex(e => e.UserName, "IX_RPAC_UserLogin_UserName")
-                    .IsUnique()
-                    .HasFillFactor((byte)70);
-            });
 
             OnModelCreatingPartial(modelBuilder);
         }
