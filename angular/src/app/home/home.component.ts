@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit {
    
   }
   
- ac(){
-
+ ac(i:number){
+  this.router.navigate(['/hospital']);
  }
  HastaneRole(){
   this.spinnerService.showSpinner();

@@ -1,7 +1,7 @@
 <!-- <button type="button" (click)="ac()" class="btn btn-success">{{hospitalname}}</button> -->
 <li *ngFor="let link of hastanename; let i = index">
   <div>
-  <button type="button" (click)="ac()" class="btn btn-success">{{ link }}</button>
+  <button type="button" (click)="ac(i)" class="btn btn-success">{{ link }}</button>
 </div>
 </li>
 <ng-template #login>

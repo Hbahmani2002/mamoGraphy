@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAlertComponent } from './mat-alert/mat-alert.component';
 import { SppinerComponent } from './sppiner/sppiner.component';
+import { HospitalComponent } from './hospital/hospital.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SppinerComponent } from './sppiner/sppiner.component';
     DemoApisComponent,
     MatAlertComponent,
     SppinerComponent,
+    HospitalComponent,
   
   ],
   imports: [

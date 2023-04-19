@@ -4,6 +4,7 @@ import { AuthGuard } from './core';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DemoApisComponent } from './demo-apis/demo-apis.component';
+import { HospitalComponent } from './hospital/hospital.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'demo-apis', component: DemoApisComponent, canActivate: [AuthGuard] },
-  
+  { path: 'hospital', component: HospitalComponent },
   { path: '**', redirectTo: '' },
 ];
 
