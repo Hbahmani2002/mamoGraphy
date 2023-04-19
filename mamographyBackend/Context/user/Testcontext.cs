@@ -17,7 +17,7 @@ namespace mamographyBackend.Context.user
         {
         }
 
-        public virtual DbSet<USR_UserHospitalPermission> USR_UserHospitalPermissions { get; set; }
+        public virtual DbSet<RPAC_VW_PatientHL7Request> RPAC_VW_PatientHL7Requests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,10 +32,9 @@ namespace mamographyBackend.Context.user
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<USR_UserHospitalPermission>(entity =>
+            modelBuilder.Entity<RPAC_VW_PatientHL7Request>(entity =>
             {
-                entity.HasIndex(e => new { e.UserId, e.RecordState }, "IX_USR_UserHospitalPermission_UserId_RecordState")
-                    .HasFillFactor((byte)70);
+                entity.ToView("RPAC_VW_PatientHL7Request");
             });
 
             OnModelCreatingPartial(modelBuilder);

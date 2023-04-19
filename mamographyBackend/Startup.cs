@@ -56,7 +56,10 @@ namespace mamographyBackend
             services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
             services.AddHostedService<JwtRefreshTokenCache>();
             services.AddScoped<IUserService, UserService>();
-
+//            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+//    this.Configuration.GetConnectionString("WebApiDatabase"),
+//    sqlServerOptions => sqlServerOptions.CommandTimeout(1000))
+//);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mamography Systems", Version = "v1" });

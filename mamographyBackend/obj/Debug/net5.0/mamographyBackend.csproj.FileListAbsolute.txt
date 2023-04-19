@@ -134,5 +134,5 @@ C:\mamography\mamographyBackend\obj\Debug\net5.0\mamographyBackend.dll
 C:\mamography\mamographyBackend\obj\Debug\net5.0\mamographyBackend.pdb
 C:\mamography\mamographyBackend\obj\Debug\net5.0\mamographyBackend.genruntimeconfig.cache
 C:\mamography\mamographyBackend\obj\Debug\net5.0\ref\mamographyBackend.dll
-C:\mamography\mamographyBackend\bin\Debug\net5.0\ref\mamographyBackend.dll
-C:\mamography\mamographyBackend\obj\Debug\net5.0\staticwebassets\mamographyBackend.StaticWebAssets.xml
+C:\Mamography\mamographyBackend\bin\Debug\net5.0\ref\mamographyBackend.dll
+C:\Mamography\mamographyBackend\obj\Debug\net5.0\staticwebassets\mamographyBackend.StaticWebAssets.xml
