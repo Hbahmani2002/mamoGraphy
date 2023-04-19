@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://mmtarama.saglik.gov.tr/HastaneWorklist/hastaneworklist.svc?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, WorkList"
+    ],
+    "targetFramework": "net5.0",
+    "typeReuseMode": "Specified"
+  }
+}

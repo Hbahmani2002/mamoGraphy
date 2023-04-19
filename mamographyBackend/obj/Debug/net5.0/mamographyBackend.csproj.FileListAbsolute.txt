@@ -136,3 +136,4 @@ C:\mamography\mamographyBackend\obj\Debug\net5.0\mamographyBackend.genruntimecon
 C:\mamography\mamographyBackend\obj\Debug\net5.0\ref\mamographyBackend.dll
 C:\Mamography\mamographyBackend\bin\Debug\net5.0\ref\mamographyBackend.dll
 C:\Mamography\mamographyBackend\obj\Debug\net5.0\staticwebassets\mamographyBackend.StaticWebAssets.xml
+C:\Mamography\mamographyBackend\bin\Debug\net5.0\Connected Services\WorkList\ConnectedService.json

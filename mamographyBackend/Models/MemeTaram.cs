@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace mamographyBackend.Models
 {
-    public class MemeTarama
+    public class MemeTaram
     {
         public string Patient { get; set; }
         public string AccessionNumber { get; set; }
