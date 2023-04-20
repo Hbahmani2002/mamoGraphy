@@ -34,21 +34,15 @@ namespace mamographyBackend.Controllers
         [HttpPost("MemeTarama")]
         public IEnumerable<MemeTaram> MemeTarama([FromBody] Sorgula request)
         {
-            
-            //BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.TransportWithMessageCredential);
-            //binding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;
-            //CustomBinding customBinding = new CustomBinding(binding);
-            //SecurityBindingElement element = customBinding.Elements.Find<SecurityBindingElement>();
-            //element.IncludeTimestamp = false;
-            //EndpointAddress MemeEndpointAddress = new EndpointAddress("https://mmtarama.saglik.gov.tr/HastaneWorklist/hastaneworklist.svc"); //canlı servis adresidir!
-            //WorkList.HastaneWorkListServiceClient worklist = new WorkList.HastaneWorkListServiceClient(customBinding, MemeEndpointAddress);
+
+            //WorkList.HastaneWorkListServiceClient worklist = new WorkList.HastaneWorkListServiceClient();
             //WorkList.MamografiIsListesiIstek a = new WorkList.MamografiIsListesiIstek();
             //a.IstemciAeTitle = "pacs";
             //worklist.ClientCredentials.UserName.UserName = "5639";
             //worklist.ClientCredentials.UserName.Password = "hs5639";
-            
-            
-            
+
+
+
             //var a1 = worklist.MamografiIsListesiAsync("5639", "hs5639", a).Result;
             var dc = new ApplicationDbContext();
             var sorgu = (from rhs in dc.RPAC_VW_PatientHL7Requests
