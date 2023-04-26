@@ -21,7 +21,7 @@ using System.ServiceModel.Channels;
 namespace mamographyBackend.Controllers
 {
     [ApiController]
-  
+  [Authorize]
     [Route("api/[controller]")]
     public class KanserController : ControllerBase
     {
